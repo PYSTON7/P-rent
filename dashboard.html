@@ -130,7 +130,7 @@
                 }
             ]
         };
-
+       
         //    DATA STORAGE
           if (!localStorage.getItem("dashboardData")) {
 
@@ -139,6 +139,7 @@
                 JSON.stringify(dashboardData)
             );
         }
+      
  // RETRIEVE DATA FROM LOCAL STORAGE
         const data =
             JSON.parse(localStorage.getItem("dashboardData"));
@@ -159,10 +160,8 @@
 
 
 
-            
         // DISPLAY PAYMENT HISTORY
-
-         data.payments.forEach((payment) => {
+        data.payments.forEach(payment => {
 
             const row = document.createElement("tr");
 
@@ -175,3 +174,24 @@
 
             paymentTable.appendChild(row);
         });
+
+
+         // PAY RENT BUTTON
+        document.getElementById("pay-rent-btn")
+            .addEventListener("click", () => {
+
+                alert("Redirecting to Rent Payment...");
+            });
+
+
+        // PAY WATER BUTTON
+        document.getElementById("pay-water-btn")
+            .addEventListener("click", () => {
+
+                alert("Redirecting to Water Bill Payment...");
+            });
+
+     </script>
+
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Tenant | RentEase</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <h1>P-rent</h1>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="apartments.html">Apartments</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="add-tenant.html">Add Tenant</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- PAGE HEADER -->
+        <section class="page-header">
+
+            <h2>Add New Tenant</h2>
+
+            <p>
+                Fill in the form below to register a tenant.
+            </p>
+
+        </section>
+
+        <!-- FORM SECTION -->
+        <section class="form-section">
+
+            <form id="tenant-form">
+
+                <!-- TENANT NAME -->
+                <div class="form-group">
+                    <label for="tenant-name">
+                        Tenant Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="tenant-name"
+                        placeholder="Enter tenant name"
+                    />
+
+                    <small class="error" id="name-error"></small>
+                </div>
+
+                <!-- APARTMENT -->
+                <div class="form-group">
+                    <label for="apartment-name">
+                        Apartment Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="apartment-name"
+                        placeholder="Enter apartment name"
+                    />
+
+                    <small class="error" id="apartment-error"></small>
+                </div>
+
+                <!-- ROOM NUMBER -->
+                <div class="form-group">
+                    <label for="room-number">
+                        Room Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="room-number"
+                        placeholder="Enter room number"
+                    />
+
+                    <small class="error" id="room-error"></small>
+                </div>
+
+                <!-- RENT AMOUNT -->
+                <div class="form-group">
+                    <label for="rent-amount">
+                        Rent Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="rent-amount"
+                        placeholder="Enter rent amount"
+                    />
+
+                    <small class="error" id="rent-error"></small>
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <button type="submit" class="submit-btn">
+                    Add Tenant
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- TENANT LIST -->
+        <section class="tenant-list-section">
+
+            <h2>Registered Tenants</h2>
+
+            <div id="tenant-list" class="tenant-container">
+
+                <!-- Tenant cards appear here -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            &copy; 2026 P-rent Apartment Management System
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // SELECT FORM
+        const tenantForm =
+            document.getElementById("tenant-form");
+
+
+        // SELECT INPUTS
+        const tenantName =
+            document.getElementById("tenant-name");
+
+        const apartmentName =
+            document.getElementById("apartment-name");
+
+        const roomNumber =
+            document.getElementById("room-number");
+
+        const rentAmount =
+            document.getElementById("rent-amount");
+
+
+        // ERROR ELEMENTS
+        const nameError =
+            document.getElementById("name-error");
+
+        const apartmentError =
+            document.getElementById("apartment-error");
+
+        const roomError =
+            document.getElementById("room-error");
+
+        const rentError =
+            document.getElementById("rent-error");
+
+
+        // TENANT LIST CONTAINER
+        const tenantList =
+            document.getElementById("tenant-list");
+
+
+        // RETRIEVE EXISTING TENANTS
+        let tenants =
+            JSON.parse(localStorage.getItem("tenants")) || [];
+
+
+        // DISPLAY TENANTS
+        function displayTenants() {
+
+            tenantList.innerHTML = "";
+
+            tenants.forEach((tenant, index) => {
+
+                const tenantCard =
+                    document.createElement("article");
+
+                tenantCard.classList.add("tenant-card");
+
+                tenantCard.innerHTML = `
+                    <h3>${tenant.name}</h3>
+
+                    <p>
+                        <strong>Apartment:</strong>
+                        ${tenant.apartment}
+                    </p>
+
+                    <p>
+                        <strong>Room:</strong>
+                        ${tenant.room}
+                    </p>
+
+                    <p>
+                        <strong>Rent:</strong>
+                        KES ${tenant.rent}
+                    </p>
+
+                    <button class="delete-btn"
+                        onclick="deleteTenant(${index})">
+                        Delete
+                    </button>
+                `;
+
+                tenantList.appendChild(tenantCard);
+            });
+        }
+
+
+        // DISPLAY SAVED TENANTS ON PAGE LOAD
+        displayTenants();
+
+
+        // FORM SUBMISSION
+        tenantForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            // CLEAR ERRORS
+            nameError.textContent = "";
+            apartmentError.textContent = "";
+            roomError.textContent = "";
+            rentError.textContent = "";
+
+
+            let isValid = true;
+
+
+            // VALIDATION
+            if (tenantName.value.trim() === "") {
+
+                nameError.textContent =
+                    "Tenant name is required";
+
+                isValid = false;
+            }
+
+
+            if (apartmentName.value.trim() === "") {
+
+                apartmentError.textContent =
+                    "Apartment name is required";
+
+                isValid = false;
+            }
+
+
+            if (roomNumber.value.trim() === "") {
+
+                roomError.textContent =
+                    "Room number is required";
+
+                isValid = false;
+            }
+
+
+            if (rentAmount.value.trim() === "") {
+
+                rentError.textContent =
+                    "Rent amount is required";
+
+                isValid = false;
+            }
+
+
+            // STOP IF INVALID
+            if (!isValid) return;
+
+
+            // CREATE TENANT OBJECT
+            const newTenant = {
+
+                name: tenantName.value,
+                apartment: apartmentName.value,
+                room: roomNumber.value,
+                rent: rentAmount.value
+            };
+
+
+            // SAVE TO ARRAY
+            tenants.push(newTenant);
+
+
+            // SAVE TO LOCAL STORAGE
+            localStorage.setItem(
+                "tenants",
+                JSON.stringify(tenants)
+            );
+
+
+            // REFRESH DISPLAY
+            displayTenants();
+
+
+            // RESET FORM
+            tenantForm.reset();
+
+
+            // SUCCESS MESSAGE
+            alert("Tenant added successfully!");
+
+        });
+
+
+        // DELETE TENANT
+        function deleteTenant(index) {
+
+            tenants.splice(index, 1);
+
+            localStorage.setItem(
+                "tenants",
+                JSON.stringify(tenants)
+            );
+
+            displayTenants();
+        }
+
+    </script>
+
+</body>
+</html>

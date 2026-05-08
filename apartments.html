@@ -85,8 +85,7 @@
             }
         ];
 
-
-        //  LOCAL STORAGE
+ //  LOCAL STORAGE
         if (!localStorage.getItem("apartments")) {
 
             localStorage.setItem(
@@ -95,8 +94,7 @@
             );
         }
 
-
-        // DATA FROM LOCAL STORAGE
+ // DATA FROM LOCAL STORAGE
         const apartments =
             JSON.parse(localStorage.getItem("apartments")) || [];
 
@@ -105,8 +103,7 @@
         const apartmentList =
             document.getElementById("apartment-list");
 
-
-        // DISPLAY APARTMENTS
+          // DISPLAY APARTMENTS
         apartments.forEach((apartment) => {
 
             const apartmentCard = document.createElement("article");
@@ -129,6 +126,9 @@
 
             apartmentList.appendChild(apartmentCard);
         });
+
+       
+       
 
     </script>
 

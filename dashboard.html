@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tenant Dashboard | P-rent</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <h1>P-rent</h1>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="apartments.html">Apartments</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="add-tenant.html">Add Tenant</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- PAGE HEADER -->
+        <section class="page-header">
+            <h2>Tenant Dashboard</h2>
+
+            <p>
+                View rent balance, water bills, and payment history.
+            </p>
+        </section>
+
+        <!-- DASHBOARD CARDS -->
+        <section class="dashboard-container">
+
+            <!-- RENT BALANCE -->
+            <article class="dashboard-card">
+                <h3>Rent Balance</h3>
+
+                <p id="rent-balance">
+                    KES 0
+                </p>
+
+                <button id="pay-rent-btn" class="dashboard-btn">
+                    Pay Rent
+                </button>
+            </article>
+
+            <!-- WATER BILL -->
+            <article class="dashboard-card">
+                <h3>Water Bill</h3>
+
+                <p id="water-bill">
+                    KES 0
+                </p>
+
+                <button id="pay-water-btn" class="dashboard-btn">
+                    Pay Water Bill
+                </button>
+            </article>
+
+        </section>
+
+        <!-- PAYMENT HISTORY -->
+        <section class="payment-history">
+
+            <h2>Payment History</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Payment Type</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="payment-table-body">
+
+                        <!-- Data inputed -->
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+<!-- footer Section -->
+      <footer>
+        <p>
+            &copy; 2026 P-rent Apartment Management System
+        </p>
+    </footer>
+
+     <!-- JAVASCRIPT -->
+    <script>
+
+        // ExXAMPLE FOR DASHBOARD DATA
+        const dashboardData = {
+            rentBalance: 12000,
+            waterBill: 2500,
+
+            payments: [
+                {
+                    date: "2026-05-01",
+                    type: "Rent",
+                    amount: 12000,
+                    status: "Paid"
+                },
+
+                {
+                    date: "2026-05-03",
+                    type: "Water Bill",
+                    amount: 2500,
+                    status: "Pending"
+                }
+            ]
+        };
+
+        //    DATA STORAGE
+          if (!localStorage.getItem("dashboardData")) {
+
+            localStorage.setItem(
+                "dashboardData",
+                JSON.stringify(dashboardData)
+            );
+        }
+ // RETRIEVE DATA FROM LOCAL STORAGE
+        const data =
+            JSON.parse(localStorage.getItem("dashboardData"));
+
+             // DISPLAY RENT BALANCE
+        document.getElementById("rent-balance")
+            .textContent = `KES ${data.rentBalance}`;
+
+
+        // DISPLAY WATER BILL
+        document.getElementById("water-bill")
+            .textContent = `KES ${data.waterBill}`;
+
+
+        // TARGET PAYMENT TABLE
+        const paymentTable =
+            document.getElementById("payment-table-body");
+
+
+
+            
+        // DISPLAY PAYMENT HISTORY
+
+         data.payments.forEach((payment) => {
+
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${payment.date}</td>
+                <td>${payment.type}</td>
+                <td>KES ${payment.amount}</td>
+                <td>${payment.status}</td>
+            `;
+
+            paymentTable.appendChild(row);
+        });

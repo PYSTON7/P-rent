@@ -321,19 +321,34 @@
         });
 
 
-        // DELETE TENANT
-        function deleteTenant(index) {
+     // DELETE TENANT WITH CONFIRMATION
+function deleteTenant(index) {
 
-            tenants.splice(index, 1);
+    // SHOW CONFIRMATION MESSAGE
+    const confirmDelete = confirm(
+        "Are you sure you want to delete this tenant?"
+    );
 
-            localStorage.setItem(
-                "tenants",
-                JSON.stringify(tenants)
-            );
+    // STOP IF USER CLICKS CANCEL
+    if (!confirmDelete) {
+        return;
+    }
 
-            displayTenants();
-        }
+    // REMOVE TENANT
+    tenants.splice(index, 1);
 
+    // UPDATE LOCAL STORAGE
+    localStorage.setItem(
+        "tenants",
+        JSON.stringify(tenants)
+    );
+
+    // REFRESH TENANT DISPLAY
+    displayTenants();
+
+    // SUCCESS MESSAGE
+    alert("Tenant deleted successfully!");
+}
     </script>
 
 </body>

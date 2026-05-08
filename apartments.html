@@ -72,7 +72,7 @@
 
             {
                 name: "Tower One Residency",
-                location: "Westlands",
+                location: "Ruahi",
                 rooms: 2,
                 landlord: "0723456789"
             },
@@ -85,49 +85,106 @@
             }
         ];
 
- //  LOCAL STORAGE
-        if (!localStorage.getItem("apartments")) {
+ // STORE DEFAULT DATA
+if (!localStorage.getItem("apartments")) {
 
-            localStorage.setItem(
-                "apartments",
-                JSON.stringify(defaultApartments)
+    localStorage.setItem(
+        "apartments",
+        JSON.stringify(defaultApartments)
+    );
+}
+
+
+// RETRIEVE DATA
+const apartments =
+    JSON.parse(localStorage.getItem("apartments")) || [];
+
+
+// TARGET ELEMENTS
+const apartmentList =
+    document.getElementById("apartment-list");
+
+const searchInput =
+    document.getElementById("search-input");
+
+
+// DISPLAY APARTMENTS FUNCTION
+function displayApartments(apartmentArray) {
+
+    apartmentList.innerHTML = "";
+
+    // SHOW MESSAGE IF EMPTY
+    if (apartmentArray.length === 0) {
+
+        apartmentList.innerHTML = `
+            <p>No apartments found.</p>
+        `;
+
+        return;
+    }
+
+    // LOOP THROUGH APARTMENTS
+    apartmentArray.forEach((apartment) => {
+
+        const apartmentCard =
+            document.createElement("article");
+
+        apartmentCard.classList.add("apartment-card");
+
+        apartmentCard.innerHTML = `
+            <h3>${apartment.name}</h3>
+
+            <p>
+                <strong>Location:</strong>
+                ${apartment.location}
+            </p>
+
+            <p>
+                <strong>Available Rooms:</strong>
+                ${apartment.rooms}
+            </p>
+
+            <p>
+                <strong>Landlord Contact:</strong>
+                ${apartment.landlord}
+            </p>
+
+            <button class="view-btn">
+                View Details
+            </button>
+        `;
+
+        apartmentList.appendChild(apartmentCard);
+    });
+}
+
+
+// INITIAL DISPLAY
+displayApartments(apartments);
+
+
+// SEARCH FUNCTIONALITY
+searchInput.addEventListener("keyup", function() {
+
+    const searchValue =
+        searchInput.value.toLowerCase();
+
+    const filteredApartments =
+        apartments.filter((apartment) => {
+
+            return (
+                apartment.name
+                    .toLowerCase()
+                    .includes(searchValue)
+
+                ||
+
+                apartment.location
+                    .toLowerCase()
+                    .includes(searchValue)
             );
-        }
-
- // DATA FROM LOCAL STORAGE
-        const apartments =
-            JSON.parse(localStorage.getItem("apartments")) || [];
-
-
-        
-        const apartmentList =
-            document.getElementById("apartment-list");
-
-          // DISPLAY APARTMENTS
-        apartments.forEach((apartment) => {
-
-            const apartmentCard = document.createElement("article");
-
-            apartmentCard.classList.add("apartment-card");
-
-            apartmentCard.innerHTML = `
-                <h3>${apartment.name}</h3>
-
-                <p><strong>Location:</strong> ${apartment.location}</p>
-
-                <p><strong>Available Rooms:</strong> ${apartment.rooms}</p>
-
-                <p><strong>Landlord Contact:</strong> ${apartment.landlord}</p>
-
-                <button class="view-btn">
-                    View Details
-                </button>
-            `;
-
-            apartmentList.appendChild(apartmentCard);
         });
 
-    </script>
+    displayApartments(filteredApartments);
 
-</body>
-</html>
+});

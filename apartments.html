@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apartments | RentEase</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>P-rent</h1>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="apartments.html">Apartments</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="add-tenant.html">Add Tenant</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+
+            <!-- PAGE HEADER -->
+        <section class="page-header">
+            <h2>Available Apartments</h2>
+
+            <p>
+                Browse apartments, available rooms, and landlord contacts.
+            </p>
+        </section>
+
+        <!-- APARTMENTS SECTION -->
+        <section class="apartments-section">
+
+            <div id="apartment-list" class="apartment-container">
+
+                <!-- Apartments will be displayed here -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            &copy; 2026 P-rent Apartment Management System
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // APARTMENT DATA
+        const defaultApartments = [
+            {
+                name: "Hillton Valley Apartments",
+                location: "Imara Daima",
+                rooms: 3,
+                landlord: "0712345678"
+            },
+
+            {
+                name: "Tower One Residency",
+                location: "Westlands",
+                rooms: 2,
+                landlord: "0723456789"
+            },
+
+            {
+                name: "Blue Kings Heights",
+                location: "Naivasha",
+                rooms: 5,
+                landlord: "0734567890"
+            }
+        ];
+
+
+        //  LOCAL STORAGE
+        if (!localStorage.getItem("apartments")) {
+
+            localStorage.setItem(
+                "apartments",
+                JSON.stringify(defaultApartments)
+            );
+        }
+
+
+        // DATA FROM LOCAL STORAGE
+        const apartments =
+            JSON.parse(localStorage.getItem("apartments")) || [];
+
+
+        
+        const apartmentList =
+            document.getElementById("apartment-list");
+
+
+        // DISPLAY APARTMENTS
+        apartments.forEach((apartment) => {
+
+            const apartmentCard = document.createElement("article");
+
+            apartmentCard.classList.add("apartment-card");
+
+            apartmentCard.innerHTML = `
+                <h3>${apartment.name}</h3>
+
+                <p><strong>Location:</strong> ${apartment.location}</p>
+
+                <p><strong>Available Rooms:</strong> ${apartment.rooms}</p>
+
+                <p><strong>Landlord Contact:</strong> ${apartment.landlord}</p>
+
+                <button class="view-btn">
+                    View Details
+                </button>
+            `;
+
+            apartmentList.appendChild(apartmentCard);
+        });
+
+    </script>
+
+</body>
+</html>

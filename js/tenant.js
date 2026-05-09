@@ -1,3 +1,4 @@
+
 // SELECT FORM
 const tenantForm = document.getElementById("tenant-form");
 

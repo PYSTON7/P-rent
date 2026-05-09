@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | P-rent</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>P-rent</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="apartments.html">Apartments</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li><a href="login.html">Account</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- PAGE HEADER -->
+        <section class="page-header">
+            <h2>Landlord Admin Panel</h2>
+            <p id="welcome-message">Welcome, Landlord</p>
+        </section>
+
+        <!-- STATS CARDS -->
+        <section class="dashboard-container">
+
+            <!-- TOTAL TENANTS -->
+            <article class="dashboard-card">
+                <h3>Total Tenants</h3>
+                <p id="total-tenants">0</p>
+            </article>
+
+            <!-- TOTAL APARTMENTS -->
+            <article class="dashboard-card">
+                <h3>Total Apartments</h3>
+                <p id="total-apartments">0</p>
+            </article>
+
+            <!-- TOTAL RENT EXPECTED -->
+            <article class="dashboard-card">
+                <h3>Total Rent Expected</h3>
+                <p id="total-rent">KES 0</p>
+            </article>
+
+        </section>
+
+        <!-- MANAGE APARTMENTS -->
+        <section class="form-section">
+            <h2>Add New Apartment</h2>
+
+            <form id="apartment-form">
+
+                <!-- APARTMENT NAME -->
+                <div class="form-group">
+                    <label for="apt-name">Apartment Name</label>
+                    <input
+                        type="text"
+                        id="apt-name"
+                        placeholder="Enter apartment name"
+                    />
+                    <small class="error" id="apt-name-error"></small>
+                </div>
+
+                <!-- LOCATION -->
+                <div class="form-group">
+                    <label for="apt-location">Location</label>
+                    <input
+                        type="text"
+                        id="apt-location"
+                        placeholder="Enter apartment location"
+                    />
+                    <small class="error" id="apt-location-error"></small>
+                </div>
+
+                <!-- AVAILABLE ROOMS -->
+                <div class="form-group">
+                    <label for="apt-rooms">Available Rooms</label>
+                    <input
+                        type="number"
+                        id="apt-rooms"
+                        placeholder="Enter number of rooms"
+                    />
+                    <small class="error" id="apt-rooms-error"></small>
+                </div>
+
+                <!-- LANDLORD CONTACT -->
+                <div class="form-group">
+                    <label for="apt-landlord">Landlord Contact</label>
+                    <input
+                        type="tel"
+                        id="apt-landlord"
+                        placeholder="Enter landlord phone e.g 0712345678"
+                    />
+                    <small class="error" id="apt-landlord-error"></small>
+                </div>
+
+                <!-- SUBMIT -->
+                <button type="submit" class="submit-btn">
+                    Add Apartment
+                </button>
+
+            </form>
+        </section>
+
+        <!-- APARTMENTS LIST -->
+        <section class="tenant-list-section">
+            <h2>Managed Apartments</h2>
+            <div id="admin-apartment-list" class="apartment-container">
+                <!-- Apartment cards appear here -->
+            </div>
+        </section>
+
+        <!-- TENANTS LIST -->
+        <section class="tenant-list-section">
+            <h2>Registered Tenants</h2>
+            <div id="admin-tenant-list" class="tenant-container">
+                <!-- Tenant cards appear here -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 P-rent Apartment Management System</p>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

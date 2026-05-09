@@ -29,19 +29,36 @@
     <!-- MAIN -->
     <main>
 
-            <!-- PAGE HEADER -->
-        <section class="page-header">
-            <h2>Available Apartments</h2>
+         <!-- PAGE HEADER -->
+<section class="page-header">
+    <h2>Available Apartments</h2>
 
-            <p>
-                Browse apartments, available rooms, and landlord contacts.
-            </p>
-        </section>
+    <p>
+        Browse apartments, available rooms,
+        and landlord contacts.
+    </p>
+</section>
 
-        <!-- APARTMENTS SECTION -->
-        <section class="apartments-section">
+<!-- SEARCH SECTION -->
+<section class="search-section">
 
-            <div id="apartment-list" class="apartment-container">
+    <input
+        type="text"
+        id="search-input"
+        placeholder="Search apartment by name or location..."
+    />
+
+</section>
+
+<!-- APARTMENTS SECTION -->
+<section class="apartments-section">
+
+    <div id="apartment-list" class="apartment-container">
+
+    </div>
+
+</section>
+  
 
                 <!-- Apartments will be displayed here -->
 
@@ -188,3 +205,7 @@ searchInput.addEventListener("keyup", function() {
     displayApartments(filteredApartments);
 
 });
+
+    </script>
+</body>
+</html>

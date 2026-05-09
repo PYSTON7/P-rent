@@ -35,19 +35,16 @@
         <!-- STATS CARDS -->
         <section class="dashboard-container">
 
-            <!-- TOTAL TENANTS -->
             <article class="dashboard-card">
                 <h3>Total Tenants</h3>
                 <p id="total-tenants">0</p>
             </article>
 
-            <!-- TOTAL APARTMENTS -->
             <article class="dashboard-card">
                 <h3>Total Apartments</h3>
                 <p id="total-apartments">0</p>
             </article>
 
-            <!-- TOTAL RENT EXPECTED -->
             <article class="dashboard-card">
                 <h3>Total Rent Expected</h3>
                 <p id="total-rent">KES 0</p>
@@ -55,13 +52,12 @@
 
         </section>
 
-        <!-- MANAGE APARTMENTS -->
+        <!-- ADD APARTMENT FORM -->
         <section class="form-section">
             <h2>Add New Apartment</h2>
 
             <form id="apartment-form">
 
-                <!-- APARTMENT NAME -->
                 <div class="form-group">
                     <label for="apt-name">Apartment Name</label>
                     <input
@@ -72,7 +68,6 @@
                     <small class="error" id="apt-name-error"></small>
                 </div>
 
-                <!-- LOCATION -->
                 <div class="form-group">
                     <label for="apt-location">Location</label>
                     <input
@@ -83,7 +78,6 @@
                     <small class="error" id="apt-location-error"></small>
                 </div>
 
-                <!-- AVAILABLE ROOMS -->
                 <div class="form-group">
                     <label for="apt-rooms">Available Rooms</label>
                     <input
@@ -94,7 +88,6 @@
                     <small class="error" id="apt-rooms-error"></small>
                 </div>
 
-                <!-- LANDLORD CONTACT -->
                 <div class="form-group">
                     <label for="apt-landlord">Landlord Contact</label>
                     <input
@@ -105,7 +98,6 @@
                     <small class="error" id="apt-landlord-error"></small>
                 </div>
 
-                <!-- SUBMIT -->
                 <button type="submit" class="submit-btn">
                     Add Apartment
                 </button>
@@ -117,15 +109,86 @@
         <section class="tenant-list-section">
             <h2>Managed Apartments</h2>
             <div id="admin-apartment-list" class="apartment-container">
-                <!-- Apartment cards appear here -->
             </div>
+        </section>
+
+        <!-- ADD TENANT FORM -->
+        <section class="form-section">
+            <h2>Add New Tenant</h2>
+            <p>Assign a tenant to one of your apartments below.</p>
+
+            <form id="add-tenant-form">
+
+                <div class="form-group">
+                    <label for="tenant-name">Tenant Name</label>
+                    <input
+                        type="text"
+                        id="tenant-name"
+                        placeholder="Enter tenant full name"
+                    />
+                    <small class="error" id="tenant-name-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="tenant-phone">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="tenant-phone"
+                        placeholder="Enter phone number e.g 0712345678"
+                    />
+                    <small class="error" id="tenant-phone-error"></small>
+                </div>
+
+                <!-- APARTMENT DROPDOWN -->
+                <div class="form-group">
+                    <label for="tenant-apartment">Select Apartment</label>
+                    <select id="tenant-apartment">
+                        <option value="">-- Select Apartment --</option>
+                    </select>
+                    <small class="error" id="tenant-apartment-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="tenant-room">Room Number</label>
+                    <input
+                        type="text"
+                        id="tenant-room"
+                        placeholder="Enter room number"
+                    />
+                    <small class="error" id="tenant-room-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="tenant-rent">Rent Amount (KES)</label>
+                    <input
+                        type="number"
+                        id="tenant-rent"
+                        placeholder="Enter rent amount"
+                    />
+                    <small class="error" id="tenant-rent-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="tenant-password">Tenant Password</label>
+                    <input
+                        type="password"
+                        id="tenant-password"
+                        placeholder="Create password for tenant"
+                    />
+                    <small class="error" id="tenant-password-error"></small>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Add Tenant
+                </button>
+
+            </form>
         </section>
 
         <!-- TENANTS LIST -->
         <section class="tenant-list-section">
             <h2>Registered Tenants</h2>
             <div id="admin-tenant-list" class="tenant-container">
-                <!-- Tenant cards appear here -->
             </div>
         </section>
 

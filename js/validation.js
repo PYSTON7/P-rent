@@ -1,4 +1,6 @@
 // SELECT FORM
+const tenantForm = document.getElementById("tenant-form");
+
 // PREVENT ENTER KEY FROM SUBMITTING EARLY
 tenantForm.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
@@ -24,7 +26,6 @@ const tenantList = document.getElementById("tenant-list");
 // RETRIEVE EXISTING TENANTS
 let tenants = JSON.parse(localStorage.getItem("tenants")) || [];
 
-
 // DISPLAY TENANTS
 function displayTenants() {
     tenantList.innerHTML = "";
@@ -49,7 +50,6 @@ function displayTenants() {
 
 // DISPLAY ON PAGE LOAD
 displayTenants();
-
 
 // FORM SUBMISSION
 tenantForm.addEventListener("submit", function(event) {
@@ -110,7 +110,6 @@ tenantForm.addEventListener("submit", function(event) {
     // SUCCESS MESSAGE
     alert("Tenant added successfully!");
 });
-
 
 // DELETE TENANT WITH CONFIRMATION
 function deleteTenant(index) {

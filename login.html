@@ -13,8 +13,7 @@
         <nav class="navbar">
             <div class="logo">
                 <h1>P-rent</h1>
-                  </div>
-
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="apartments.html">Apartments</a></li>
@@ -22,36 +21,42 @@
                 <li><a href="add-tenant.html">Add Tenant</a></li>
                 <li><a href="login.html">Account</a></li>
             </ul>
-            </div>
         </nav>
     </header>
 
-    <!-- MAIN -->
+    <!-- MAIN CONTENT -->
     <main>
 
         <section class="page-header">
-            <h2>Welcome to P-rent</h2>
-            <p>Login to access your account</p>
+            <h2>Account Login</h2>
+            <p>Login to access your P-rent account.</p>
         </section>
 
         <section class="form-section">
 
             <!-- ROLE TOGGLE -->
             <div class="role-toggle">
-                <button id="tenant-toggle" class="toggle-btn active" onclick="switchRole('tenant')">
+                <button
+                    id="tenant-toggle"
+                    class="toggle-btn active"
+                    onclick="switchRole('tenant')"
+                >
                     Tenant
                 </button>
-                <button id="landlord-toggle" class="toggle-btn" onclick="switchRole('landlord')">
+                <button
+                    id="landlord-toggle"
+                    class="toggle-btn"
+                    onclick="switchRole('landlord')"
+                >
                     Landlord
                 </button>
             </div>
 
-            <!-- LOGIN FORM -->
             <form id="login-form">
 
                 <h3 id="form-title">Tenant Login</h3>
 
-                <!-- PHONE NUMBER -->
+                <!-- PHONE -->
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
                     <input
@@ -60,6 +65,14 @@
                         placeholder="Enter phone number e.g 0712345678"
                     />
                     <small class="error" id="phone-error"></small>
+                </div>
+
+                <!-- APARTMENT DROPDOWN (TENANT ONLY) -->
+                <div class="form-group" id="apartment-group">
+                    <label for="login-apartment">Select Your Apartment</label>
+                    <select id="login-apartment">
+                        <option value="">-- Select Your Apartment --</option>
+                    </select>
                 </div>
 
                 <!-- PASSWORD -->
@@ -73,17 +86,16 @@
                     <small class="error" id="password-error"></small>
                 </div>
 
-                <!-- GENERAL ERROR -->
                 <small class="error" id="login-error"></small>
 
-                <!-- SUBMIT -->
                 <button type="submit" class="submit-btn">Login</button>
 
-                <!-- REGISTER LINK -->
-                <p class="register-link">
-                    Don't have an account?
-                    <a href="register.html">Register here</a>
-                </p>
+                <div class="form-group">
+                    <p class="register-link">
+                        Don't have an account?
+                        <a href="register.html">Register here</a>
+                    </p>
+                </div>
 
             </form>
 

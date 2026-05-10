@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,152 +7,150 @@
 
     <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <nav class="navbar">
+<!-- HEADER -->
+<header>
+    <nav class="navbar">
 
-            <div class="logo">
-                <h1>P-rent</h1>
+        <div class="logo">
+            <h1>P-rent</h1>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="apartments.html">Apartments</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li>
+                <button id="logout-btn" class="logout-btn">
+                    Logout
+                </button>
+            </li>
+        </ul>
+
+    </nav>
+</header>
+
+
+<!-- MAIN -->
+<main>
+
+    <!-- HEADER -->
+    <section class="page-header">
+
+        <h2>Tenant Dashboard</h2>
+
+        <h3 id="tenant-name-display"></h3>
+
+        <p id="tenant-apartment-display"></p>
+
+    </section>
+
+
+    <!-- BALANCE CARDS -->
+    <section class="dashboard-container">
+
+        <article class="dashboard-card">
+            <h3>Rent Balance</h3>
+            <p id="rent-balance">KES 0</p>
+        </article>
+
+        <article class="dashboard-card">
+            <h3>Water Bill</h3>
+            <p id="water-bill">KES 0</p>
+        </article>
+
+    </section>
+
+
+    <!-- RENT PAYMENT FORM -->
+    <section class="form-section">
+
+        <h2>Make Payment</h2>
+
+        <form id="payment-form">
+
+            <div class="form-group">
+
+                <label>Amount (KES)</label>
+
+                <input
+                    type="number"
+                    id="payment-amount"
+                    placeholder="Enter amount"
+                />
+
+                <small class="error" id="payment-error"></small>
+
             </div>
 
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="apartments.html">Apartments</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li>
-                    <button id="logout-btn" class="logout-btn">
-                        Logout
-                    </button>
-                </li>
-            </ul>
+            <button type="submit" class="submit-btn">
+                Pay Rent (Local)
+            </button>
 
-        </nav>
-    </header>
+        </form>
+
+    </section>
 
 
-    <!-- MAIN CONTENT -->
-    <main>
+    <!-- M-PESA SECTION -->
+    <section class="form-section">
 
-        <!-- PAGE HEADER -->
-        <section class="page-header">
+        <h2>M-Pesa Payment</h2>
 
-            <h2>Tenant Dashboard</h2>
+        <div>
 
-            <h3 id="tenant-name-display"></h3>
+            <input
+                type="tel"
+                id="mpesa-phone"
+                placeholder="2547XXXXXXXX"
+            />
 
-            <p id="tenant-apartment-display"></p>
+            <small class="error" id="mpesa-error"></small>
 
-        </section>
+            <button id="mpesa-pay-btn" class="submit-btn">
+                Pay via M-Pesa
+            </button>
 
+        </div>
 
-        <!-- DASHBOARD CARDS -->
-        <section class="dashboard-container">
-
-            <!-- RENT BALANCE -->
-            <article class="dashboard-card">
-
-                <h3>Rent Balance</h3>
-
-                <p id="rent-balance">
-                    KES 0
-                </p>
-
-            </article>
+    </section>
 
 
-            <!-- WATER BILL -->
-            <article class="dashboard-card">
+    <!-- PAYMENT HISTORY -->
+    <section class="payment-history">
 
-                <h3>Water Bill</h3>
+        <h2>Payment History</h2>
 
-                <p id="water-bill">
-                    KES 0
-                </p>
+        <table>
 
-            </article>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
 
-        </section>
+            <tbody id="payment-table-body"></tbody>
 
+        </table>
 
-        <!-- PAYMENT FORM -->
-        <section class="form-section">
+    </section>
 
-            <h2>Make Payment</h2>
-
-            <form id="payment-form">
-
-                <div class="form-group">
-
-                    <label for="payment-amount">
-                        Enter Payment Amount
-                    </label>
-
-                    <input
-                        type="number"
-                        id="payment-amount"
-                        placeholder="Enter payment amount"
-                    />
-
-                    <small class="error" id="payment-error"></small>
-
-                </div>
+</main>
 
 
-                <button
-                    type="submit"
-                    id="pay-rent-btn"
-                    class="submit-btn"
-                >
-                    Pay Rent
-                </button>
-
-            </form>
-
-        </section>
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 P-rent System</p>
+</footer>
 
 
-        <!-- PAYMENT HISTORY -->
-        <section class="payment-history">
-
-            <h2>Payment History</h2>
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Payment Type</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-
-
-                <tbody id="payment-table-body">
-
-                    <!-- PAYMENTS APPEAR HERE -->
-
-                </tbody>
-
-            </table>
-
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-    <footer>
-        <p>
-            &copy; 2026 P-rent Apartment Management System
-        </p>
-    </footer>
-
-
-    <!-- JAVASCRIPT -->
-    <script src="js/dashboard.js"></script>
+<!-- JS -->
+<script src="js/dashboard.js"></script>
 
 </body>
 </html>

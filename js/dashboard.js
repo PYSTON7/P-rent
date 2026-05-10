@@ -1,26 +1,22 @@
-// CHECK LOGIN SESSION
-
-
+// =============================
+// LOGIN CHECK
+// =============================
 const currentTenant =
     JSON.parse(localStorage.getItem("loggedInTenant"));
 
-
-// REDIRECT IF NOT LOGGED IN
 if (!currentTenant) {
-
     alert("Please login first");
-
     window.location.href = "login.html";
 }
 
 
-// TARGET ELEMENTS
-
-
-const tenantNameDisplay =
+// =============================
+// ELEMENTS
+// =============================
+const nameDisplay =
     document.getElementById("tenant-name-display");
 
-const tenantApartmentDisplay =
+const aptDisplay =
     document.getElementById("tenant-apartment-display");
 
 const rentBalance =
@@ -29,223 +25,232 @@ const rentBalance =
 const waterBill =
     document.getElementById("water-bill");
 
-const paymentTable =
-    document.getElementById("payment-table-body");
-
 const paymentForm =
     document.getElementById("payment-form");
 
-const paymentAmountInput =
+const paymentAmount =
     document.getElementById("payment-amount");
 
 const paymentError =
     document.getElementById("payment-error");
 
+const tableBody =
+    document.getElementById("payment-table-body");
+
 const logoutBtn =
     document.getElementById("logout-btn");
 
+const mpesaBtn =
+    document.getElementById("mpesa-pay-btn");
 
-// DISPLAY TENANT DETAILS
+const mpesaPhone =
+    document.getElementById("mpesa-phone");
+
+const mpesaError =
+    document.getElementById("mpesa-error");
 
 
-tenantNameDisplay.textContent =
+// =============================
+// DISPLAY USER INFO
+// =============================
+nameDisplay.textContent =
     currentTenant.name;
 
-
-tenantApartmentDisplay.textContent =
+aptDisplay.textContent =
     `${currentTenant.apartment} - Room ${currentTenant.room}`;
 
 
-
-// DISPLAY BALANCES
-
-
+// =============================
+// BALANCE DISPLAY
+// =============================
 function displayBalances() {
 
     rentBalance.textContent =
         `KES ${currentTenant.balance}`;
 
-
     waterBill.textContent =
         `KES ${currentTenant.waterBill}`;
 }
 
-
-// LOAD BALANCES
-
 displayBalances();
 
 
-
-// DISPLAY PAYMENT HISTORY
-
-
+// =============================
+// PAYMENT HISTORY
+// =============================
 function displayPayments() {
 
-    paymentTable.innerHTML = "";
+    tableBody.innerHTML = "";
 
+    if (!currentTenant.payments?.length) {
 
-    // EMPTY STATE
-    if (
-        !currentTenant.payments ||
-        currentTenant.payments.length === 0
-    ) {
-
-        paymentTable.innerHTML = `
+        tableBody.innerHTML = `
             <tr>
-                <td colspan="4">
-                    No payments made yet.
-                </td>
+                <td colspan="4">No payments yet</td>
             </tr>
         `;
 
         return;
     }
 
+    currentTenant.payments.forEach(p => {
 
-   // LOOP THROUGH PAYMENTS
-currentTenant.payments.forEach((payment) => {
+        const row = document.createElement("tr");
 
-    const row =
-        document.createElement("tr");
+        row.innerHTML = `
+            <td>${p.date}</td>
+            <td>${p.type}</td>
+            <td>KES ${p.amount}</td>
+            <td>${p.status}</td>
+        `;
 
-
-    row.innerHTML = `
-        <td>${payment.date}</td>
-        <td>${payment.type}</td>
-        <td>KES ${payment.amount}</td>
-        <td>${payment.status}</td>
-    `;
-
-
-    paymentTable.appendChild(row);
-});
-
-
-// LOAD PAYMENT HISTORY
+        tableBody.appendChild(row);
+    });
+}
 
 displayPayments();
 
 
-// PAYMENT SYSTEM
+// =============================
+// LOCAL PAYMENT (OPTIONAL)
+// =============================
+paymentForm.addEventListener("submit", (e) => {
 
+    e.preventDefault();
 
-paymentForm.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-
-    // CLEAR ERROR
     paymentError.textContent = "";
 
+    const amount = Number(paymentAmount.value);
 
-    // GET AMOUNT
-    const paymentAmount =
-        Number(paymentAmountInput.value);
-
-
-    // VALIDATION
-    if (
-        isNaN(paymentAmount) ||
-        paymentAmount <= 0
-    ) {
+    if (isNaN(amount) || amount <= 0) {
 
         paymentError.textContent =
-            "Enter a valid payment amount";
+            "Enter valid amount";
 
         return;
     }
 
-
-    // PREVENT OVERPAYMENT
-    if (paymentAmount > currentTenant.balance) {
+    if (amount > currentTenant.balance) {
 
         paymentError.textContent =
-            "Amount exceeds rent balance";
+            "Amount exceeds balance";
 
         return;
     }
 
+    currentTenant.balance -= amount;
 
-    // UPDATE BALANCE
-    currentTenant.balance -= paymentAmount;
-
-
-    // CREATE PAYMENT OBJECT
-    const newPayment = {
-
-        date: new Date().toLocaleDateString(),
-
-        type: "Rent Payment",
-
-        amount: paymentAmount,
-
+    currentTenant.payments.push({
+        date: new Date().toLocaleString(),
+        type: "Manual Payment",
+        amount,
         status: "Paid"
-    };
+    });
+
+    saveTenant();
+
+    displayBalances();
+    displayPayments();
+
+    paymentForm.reset();
+
+    alert("Payment successful");
+});
 
 
-    // ADD TO HISTORY
-    currentTenant.payments.push(newPayment);
+// =============================
+// M-PESA PAYMENT (BACKEND CALL)
+// =============================
+mpesaBtn.addEventListener("click", async () => {
+
+    mpesaError.textContent = "";
+
+    const phone = mpesaPhone.value;
+    const amount = Number(paymentAmount.value);
+
+    if (!phone) {
+
+        mpesaError.textContent =
+            "Enter phone number";
+
+        return;
+    }
+
+    if (isNaN(amount) || amount <= 0) {
+
+        mpesaError.textContent =
+            "Enter amount first";
+
+        return;
+    }
+
+    try {
+
+        const res = await fetch("http://localhost:3000/stkpush", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                phone,
+                amount,
+                tenantId: currentTenant.phone
+            })
+        });
+
+        const data = await res.json();
+
+        console.log(data);
+
+        alert("STK Push sent. Check phone.");
+
+    } catch (err) {
+
+        mpesaError.textContent =
+            "Payment failed";
+    }
+});
 
 
-    // UPDATE TENANTS ARRAY
-  
+// =============================
+// SAVE TO LOCAL STORAGE
+// =============================
+function saveTenant() {
 
     let tenants =
         JSON.parse(localStorage.getItem("tenants")) || [];
 
+    tenants = tenants.map(t => {
 
-    tenants = tenants.map((tenant) => {
-
-        if (tenant.phone === currentTenant.phone) {
-
+        if (t.phone === currentTenant.phone) {
             return currentTenant;
         }
 
-        return tenant;
+        return t;
     });
 
-
-    // SAVE UPDATED TENANTS
     localStorage.setItem(
         "tenants",
         JSON.stringify(tenants)
     );
 
-
-    // UPDATE SESSION
     localStorage.setItem(
         "loggedInTenant",
         JSON.stringify(currentTenant)
     );
+}
 
 
-    // REFRESH UI
-    displayBalances();
-
-    displayPayments();
-
-
-    // RESET FORM
-    paymentForm.reset();
-
-
-    // SUCCESS MESSAGE
-    alert("Payment successful!");
-});
-
-
-
-// LOGOUT SYSTEM
-
-
-logoutBtn.addEventListener("click", function() {
+// =============================
+// LOGOUT
+// =============================
+logoutBtn.addEventListener("click", () => {
 
     localStorage.removeItem("loggedInTenant");
 
-    alert("Logged out successfully");
-
     window.location.href = "login.html";
 });
-
 

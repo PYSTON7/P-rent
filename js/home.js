@@ -1,15 +1,11 @@
-
 // home.js
-// HOME PAGE APARTMENTS
-
-
 
 // GET APARTMENTS FROM LOCAL STORAGE
 const apartments =
     JSON.parse(localStorage.getItem("apartments")) || [];
 
 
-// TARGET CONTAINER
+// CONTAINER
 const apartmentContainer =
     document.getElementById("home-apartment-list");
 
@@ -21,6 +17,19 @@ function displayHomeApartments() {
     if (!apartmentContainer) return;
 
     apartmentContainer.innerHTML = "";
+
+
+    // CHECK IF NO APARTMENTS EXIST
+    if (apartments.length === 0) {
+
+        apartmentContainer.innerHTML = `
+            <p class="no-apartments">
+                No apartments available at the moment.
+            </p>
+        `;
+
+        return;
+    }
 
 
     // SHOW ONLY FIRST 3 APARTMENTS
@@ -60,7 +69,7 @@ function displayHomeApartments() {
         // BUTTON EVENT
         apartmentCard
             .querySelector(".view-btn")
-            .addEventListener("click", function() {
+            .addEventListener("click", function () {
 
                 alert(
                     `${apartment.name}\n` +

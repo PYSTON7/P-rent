@@ -1,0 +1,161 @@
+# dashboard.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tenant Dashboard | P-rent</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <h1>P-rent</h1>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="apartments.html">Apartments</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li>
+                    <button id="logout-btn" class="logout-btn">
+                        Logout
+                    </button>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- PAGE HEADER -->
+        <section class="page-header">
+
+            <h2>Tenant Dashboard</h2>
+
+            <h3 id="tenant-name-display"></h3>
+
+            <p id="tenant-apartment-display"></p>
+
+        </section>
+
+
+        <!-- DASHBOARD CARDS -->
+        <section class="dashboard-container">
+
+            <!-- RENT BALANCE -->
+            <article class="dashboard-card">
+
+                <h3>Rent Balance</h3>
+
+                <p id="rent-balance">
+                    KES 0
+                </p>
+
+            </article>
+
+
+            <!-- WATER BILL -->
+            <article class="dashboard-card">
+
+                <h3>Water Bill</h3>
+
+                <p id="water-bill">
+                    KES 0
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- PAYMENT FORM -->
+        <section class="form-section">
+
+            <h2>Make Payment</h2>
+
+            <form id="payment-form">
+
+                <div class="form-group">
+
+                    <label for="payment-amount">
+                        Enter Payment Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="payment-amount"
+                        placeholder="Enter payment amount"
+                    />
+
+                    <small class="error" id="payment-error"></small>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="pay-rent-btn"
+                    class="submit-btn"
+                >
+                    Pay Rent
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- PAYMENT HISTORY -->
+        <section class="payment-history">
+
+            <h2>Payment History</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Payment Type</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+
+                <tbody id="payment-table-body">
+
+                    <!-- PAYMENTS APPEAR HERE -->
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            &copy; 2026 P-rent Apartment Management System
+        </p>
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/dashboard.js"></script>
+
+</body>
+</html>

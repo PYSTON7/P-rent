@@ -3,202 +3,454 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin | P-rent</title>
+    <title>Admin Panel | P-rent</title>
+
     <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
     <!-- HEADER -->
     <header>
         <nav class="navbar">
+
             <div class="logo">
                 <h1>P-rent</h1>
             </div>
+
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="apartments.html">Apartments</a></li>
-                <li><a href="admin.html">Admin</a></li>
                 <li><a href="login.html">Account</a></li>
             </ul>
+
         </nav>
     </header>
+
 
     <!-- MAIN CONTENT -->
     <main>
 
         <!-- PAGE HEADER -->
         <section class="page-header">
-            <h2>Landlord Admin Panel</h2>
-            <p id="welcome-message">Welcome, Landlord</p>
-        </section>
 
-        <!-- STATS CARDS -->
-        <section class="dashboard-container">
+            <h2>System Administration Panel</h2>
 
-            <article class="dashboard-card">
-                <h3>Total Tenants</h3>
-                <p id="total-tenants">0</p>
-            </article>
-
-            <article class="dashboard-card">
-                <h3>Total Apartments</h3>
-                <p id="total-apartments">0</p>
-            </article>
-
-            <article class="dashboard-card">
-                <h3>Total Rent Expected</h3>
-                <p id="total-rent">KES 0</p>
-            </article>
+            <p>
+                Manage apartment accounts and landlord access.
+            </p>
 
         </section>
 
-        <!-- ADD APARTMENT FORM -->
+
+        <!-- ===================================== -->
+        <!-- WEBSITE OWNER SECTION -->
+        <!-- ONLY OWNER CREATES APARTMENT ACCOUNTS -->
+        <!-- ===================================== -->
+
         <section class="form-section">
-            <h2>Add New Apartment</h2>
 
-            <form id="apartment-form">
+            <h2>Create Apartment Account</h2>
 
+            <p>
+                The website owner registers apartment accounts
+                and assigns landlords.
+            </p>
+
+            <form id="apartment-account-form">
+
+                <!-- APARTMENT NAME -->
                 <div class="form-group">
-                    <label for="apt-name">Apartment Name</label>
+
+                    <label for="apartment-name">
+                        Apartment Name
+                    </label>
+
                     <input
                         type="text"
-                        id="apt-name"
+                        id="apartment-name"
                         placeholder="Enter apartment name"
                     />
-                    <small class="error" id="apt-name-error"></small>
+
+                    <small
+                        class="error"
+                        id="apartment-name-error"
+                    ></small>
+
                 </div>
 
+
+                <!-- LOCATION -->
                 <div class="form-group">
-                    <label for="apt-location">Location</label>
+
+                    <label for="apartment-location">
+                        Apartment Location
+                    </label>
+
                     <input
                         type="text"
-                        id="apt-location"
+                        id="apartment-location"
                         placeholder="Enter apartment location"
                     />
-                    <small class="error" id="apt-location-error"></small>
+
+                    <small
+                        class="error"
+                        id="apartment-location-error"
+                    ></small>
+
                 </div>
 
+
+                <!-- LANDLORD NAME -->
                 <div class="form-group">
-                    <label for="apt-rooms">Available Rooms</label>
+
+                    <label for="landlord-name">
+                        Landlord Name
+                    </label>
+
                     <input
-                        type="number"
-                        id="apt-rooms"
-                        placeholder="Enter number of rooms"
+                        type="text"
+                        id="landlord-name"
+                        placeholder="Enter landlord name"
                     />
-                    <small class="error" id="apt-rooms-error"></small>
+
+                    <small
+                        class="error"
+                        id="landlord-name-error"
+                    ></small>
+
                 </div>
 
+
+                <!-- LANDLORD PHONE -->
                 <div class="form-group">
-                    <label for="apt-landlord">Landlord Contact</label>
+
+                    <label for="landlord-phone">
+                        Landlord Phone
+                    </label>
+
                     <input
                         type="tel"
-                        id="apt-landlord"
-                        placeholder="Enter landlord phone e.g 0712345678"
+                        id="landlord-phone"
+                        placeholder="Enter landlord phone"
                     />
-                    <small class="error" id="apt-landlord-error"></small>
+
+                    <small
+                        class="error"
+                        id="landlord-phone-error"
+                    ></small>
+
                 </div>
 
-                <button type="submit" class="submit-btn">
-                    Add Apartment
+
+                <!-- LANDLORD PASSWORD -->
+                <div class="form-group">
+
+                    <label for="landlord-password">
+                        Landlord Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="landlord-password"
+                        placeholder="Create landlord password"
+                    />
+
+                    <small
+                        class="error"
+                        id="landlord-password-error"
+                    ></small>
+
+                </div>
+
+
+                <!-- AVAILABLE ROOMS -->
+                <div class="form-group">
+
+                    <label for="available-rooms">
+                        Available Rooms
+                    </label>
+
+                    <input
+                        type="number"
+                        id="available-rooms"
+                        placeholder="Enter number of rooms"
+                    />
+
+                    <small
+                        class="error"
+                        id="available-rooms-error"
+                    ></small>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Create Apartment Account
                 </button>
 
             </form>
+
         </section>
 
-        <!-- APARTMENTS LIST -->
+
+        <!-- ===================================== -->
+        <!-- APARTMENT ACCOUNTS -->
+        <!-- ===================================== -->
+
         <section class="tenant-list-section">
-            <h2>Managed Apartments</h2>
-            <div id="admin-apartment-list" class="apartment-container">
+
+            <h2>Registered Apartment Accounts</h2>
+
+            <div
+                id="apartment-account-list"
+                class="apartment-container"
+            >
+
+                <!-- Accounts appear here -->
+
             </div>
+
         </section>
 
-        <!-- ADD TENANT FORM -->
+
+        <!-- ===================================== -->
+        <!-- LANDLORD MANAGEMENT SECTION -->
+        <!-- ===================================== -->
+
+        <section class="page-header">
+
+            <h2>Landlord Tenant Management</h2>
+
+            <p>
+                Landlords manage tenants assigned to
+                their apartments.
+            </p>
+
+        </section>
+
+
+        <!-- ADD TENANT -->
         <section class="form-section">
-            <h2>Add New Tenant</h2>
-            <p>Assign a tenant to one of your apartments below.</p>
 
-            <form id="add-tenant-form">
+            <h2>Add Tenant</h2>
 
+            <form id="tenant-form">
+
+                <!-- TENANT NAME -->
                 <div class="form-group">
-                    <label for="tenant-name">Tenant Name</label>
+
+                    <label for="tenant-name">
+                        Tenant Name
+                    </label>
+
                     <input
                         type="text"
                         id="tenant-name"
-                        placeholder="Enter tenant full name"
+                        placeholder="Enter tenant name"
                     />
-                    <small class="error" id="tenant-name-error"></small>
+
+                    <small
+                        class="error"
+                        id="tenant-name-error"
+                    ></small>
+
                 </div>
 
+
+                <!-- TENANT PHONE -->
                 <div class="form-group">
-                    <label for="tenant-phone">Phone Number</label>
+
+                    <label for="tenant-phone">
+                        Tenant Phone
+                    </label>
+
                     <input
                         type="tel"
                         id="tenant-phone"
-                        placeholder="Enter phone number e.g 0712345678"
+                        placeholder="Enter tenant phone"
                     />
-                    <small class="error" id="tenant-phone-error"></small>
+
+                    <small
+                        class="error"
+                        id="tenant-phone-error"
+                    ></small>
+
                 </div>
 
-                <!-- APARTMENT DROPDOWN -->
+
+                <!-- APARTMENT SELECT -->
                 <div class="form-group">
-                    <label for="tenant-apartment">Select Apartment</label>
+
+                    <label for="tenant-apartment">
+                        Select Apartment
+                    </label>
+
                     <select id="tenant-apartment">
-                        <option value="">-- Select Apartment --</option>
+
+                        <option value="">
+                            -- Select Apartment --
+                        </option>
+
                     </select>
-                    <small class="error" id="tenant-apartment-error"></small>
+
+                    <small
+                        class="error"
+                        id="tenant-apartment-error"
+                    ></small>
+
                 </div>
 
+
+                <!-- ROOM -->
                 <div class="form-group">
-                    <label for="tenant-room">Room Number</label>
+
+                    <label for="tenant-room">
+                        Room Number
+                    </label>
+
                     <input
                         type="text"
                         id="tenant-room"
                         placeholder="Enter room number"
                     />
-                    <small class="error" id="tenant-room-error"></small>
+
+                    <small
+                        class="error"
+                        id="tenant-room-error"
+                    ></small>
+
                 </div>
 
+
+                <!-- RENT -->
                 <div class="form-group">
-                    <label for="tenant-rent">Rent Amount (KES)</label>
+
+                    <label for="tenant-rent">
+                        Monthly Rent
+                    </label>
+
                     <input
                         type="number"
                         id="tenant-rent"
                         placeholder="Enter rent amount"
                     />
-                    <small class="error" id="tenant-rent-error"></small>
+
+                    <small
+                        class="error"
+                        id="tenant-rent-error"
+                    ></small>
+
                 </div>
 
+
+                <!-- PASSWORD -->
                 <div class="form-group">
-                    <label for="tenant-password">Tenant Password</label>
+
+                    <label for="tenant-password">
+                        Tenant Password
+                    </label>
+
                     <input
                         type="password"
                         id="tenant-password"
-                        placeholder="Create password for tenant"
+                        placeholder="Create password"
                     />
-                    <small class="error" id="tenant-password-error"></small>
+
+                    <small
+                        class="error"
+                        id="tenant-password-error"
+                    ></small>
+
                 </div>
 
-                <button type="submit" class="submit-btn">
+
+                <!-- SUBMIT -->
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
                     Add Tenant
                 </button>
 
             </form>
+
         </section>
 
+
+        <!-- ===================================== -->
         <!-- TENANTS LIST -->
+        <!-- ===================================== -->
+
         <section class="tenant-list-section">
+
             <h2>Registered Tenants</h2>
-            <div id="admin-tenant-list" class="tenant-container">
+
+            <div
+                id="tenant-list"
+                class="tenant-container"
+            >
+
+                <!-- Tenants appear here -->
+
             </div>
+
+        </section>
+
+
+        <!-- ===================================== -->
+        <!-- RENT MONITORING -->
+        <!-- ===================================== -->
+
+        <section class="payment-history">
+
+            <h2>Tenant Rent & Balances</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Tenant</th>
+                        <th>Apartment</th>
+                        <th>Room</th>
+                        <th>Rent</th>
+                        <th>Balance</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="rent-table-body">
+
+                    <!-- Rent records appear here -->
+
+                </tbody>
+
+            </table>
+
         </section>
 
     </main>
 
+
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 P-rent Apartment Management System</p>
+
+        <p>
+            &copy; 2026 P-rent Apartment Management System
+        </p>
+
     </footer>
 
+
+    <!-- JAVASCRIPT -->
     <script src="js/admin.js"></script>
+
 </body>
 </html>

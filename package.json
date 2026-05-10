@@ -1,0 +1,27 @@
+{
+  "name": "p-rent",
+  "version": "1.0.0",
+  "description": "A web-based apartment management system that enables landlords to manage tenants, payments, rooms, and apartment operations while allowing tenants to pay rent, check balances, and track payment history online.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PYSTON7/P-rent.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/PYSTON7/P-rent/issues"
+  },
+  "homepage": "https://github.com/PYSTON7/P-rent#readme",
+  "dependencies": {
+    "axios": "^1.16.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}

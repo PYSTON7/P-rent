@@ -1,3 +1,15 @@
+function requireAdmin() {
+
+    const role = localStorage.getItem("role");
+
+    if (role !== "admin") {
+        alert("Admins only!");
+        window.location.href = "login.html";
+    }
+
+    requireAdmin();
+}
+
 // CHECK IF LANDLORD IS LOGGED IN
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 

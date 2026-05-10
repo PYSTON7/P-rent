@@ -390,3 +390,204 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* 
+ADMIN CSS */
+
+
+
+   /* ADMIN DASHBOARD HEADER */
+
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+
+    padding: 40px;
+    background-color: #f5f7fa;
+}
+
+.dashboard-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+    transition: 0.3s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.dashboard-card h3 {
+    color: #1e3a5f;
+    margin-bottom: 10px;
+}
+
+.dashboard-card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+   /* FORM SECTIONS (SHARED) */
+
+
+.form-section {
+    padding: 40px;
+    background-color: white;
+    margin: 20px 40px;
+    border-radius: 10px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-section h2 {
+    margin-bottom: 10px;
+    color: #1e3a5f;
+}
+
+.form-section p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+
+/* FORM GROUP */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #1e3a5f;
+}
+
+
+/* ERROR TEXT */
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+
+   /* BUTTONS */
+
+
+.submit-btn {
+    background-color: #1e3a5f;
+    color: white;
+
+    padding: 12px 20px;
+    border: none;
+
+    border-radius: 6px;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #16324f;
+}
+
+
+
+   /* LIST SECTIONS */
+
+
+.tenant-list-section {
+    padding: 40px;
+    background-color: #f5f7fa;
+}
+
+.tenant-list-section h2 {
+    margin-bottom: 20px;
+    color: #1e3a5f;
+}
+
+.tenant-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+
+/* APARTMENT + TENANT CARDS */
+
+.apartment-card,
+.tenant-card {
+    background-color: white;
+    padding: 20px;
+
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    transition: 0.3s;
+}
+
+.apartment-card:hover,
+.tenant-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* 
+   WELCOME MESSAGE */
+
+
+#welcome-message {
+    color: #555;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+
+/* 
+   RESPONSIVE DESIGN */
+
+
+@media (max-width: 768px) {
+
+    .dashboard-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .form-section {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .tenant-list-section {
+        padding: 20px;
+    }
+}

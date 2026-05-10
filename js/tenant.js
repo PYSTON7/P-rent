@@ -1,3 +1,26 @@
+const role = localStorage.getItem("role");
+
+if (role !== "admin") {
+
+    alert("Access denied! Admins only.");
+
+    window.location.href = "login.html";
+}
+
+
+
+const role = localStorage.getItem("role");
+
+if (role !== "admin") {
+
+    const addTenantLink =
+        document.querySelector("a[href='add-tenant.html']");
+
+    if (addTenantLink) {
+        addTenantLink.style.display = "none";
+    }
+}
+
 
 // SELECT FORM
 const tenantForm = document.getElementById("tenant-form");

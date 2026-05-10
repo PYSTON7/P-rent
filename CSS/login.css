@@ -1,0 +1,24 @@
+/* LOGIN CSS */
+.role-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.toggle-btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.toggle-btn.active {
+    background-color: #1e3a8a;
+    color: white;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}

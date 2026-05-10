@@ -1,5 +1,5 @@
 
-
+/* FOR HOME PAGE */
 * {
     margin: 0;
     padding: 0;
@@ -250,5 +250,143 @@ footer {
     .about,
     .apartments {
         padding: 40px 20px;
+    }
+}
+
+
+
+/* APARTMENT SECTION */
+
+   /* PAGE HEADER */
+
+
+.page-header {
+    text-align: center;
+    padding: 60px 20px 30px;
+    background-color: white;
+}
+
+.page-header h2 {
+    font-size: 36px;
+    color: #1e3a5f;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 18px;
+    color: #555;
+}
+
+
+
+   /* SEARCH SECTION */
+
+
+.search-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f5f7fa;
+}
+
+.search-section input {
+    width: 60%;
+    max-width: 500px;
+    padding: 12px 15px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    outline: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.search-section input:focus {
+    border-color: #1e3a5f;
+    box-shadow: 0 0 5px rgba(30, 58, 95, 0.3);
+}
+
+
+
+   /* APARTMENTS SECTION (PAGE) */
+
+
+.apartments-section {
+    padding: 40px;
+    background-color: #f5f7fa;
+}
+
+
+/*  GRID SECTION */
+.apartment-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+
+/* CARD STYLE*/
+.apartment-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    transition: 0.3s;
+}
+
+.apartment-card:hover {
+    transform: translateY(-5px);
+}
+
+.apartment-card h3 {
+    color: #1e3a5f;
+    margin-bottom: 15px;
+}
+
+.apartment-card p {
+    margin-bottom: 10px;
+    color: #444;
+}
+
+
+/* BUTTON*/
+.view-btn {
+    margin-top: 15px;
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #1e3a5f;
+    color: white;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.view-btn:hover {
+    background-color: #16324f;
+}
+
+
+
+   /* RESPONSIVE DESIGN */
+
+
+@media (max-width: 768px) {
+
+    .search-section input {
+        width: 90%;
+    }
+
+    .page-header h2 {
+        font-size: 28px;
+    }
+
+    .apartment-container {
+        grid-template-columns: 1fr;
     }
 }

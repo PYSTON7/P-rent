@@ -1,100 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
     <title>Login | P-rent</title>
-    <link rel="stylesheet" href="css/style.css" />
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    />
+
 </head>
+
 <body>
 
     <!-- HEADER -->
+    
     <header>
+
         <nav class="navbar">
+
             <div class="logo">
                 <h1>P-rent</h1>
             </div>
+
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="apartments.html">Apartments</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="add-tenant.html">Add Tenant</a></li>
-                <li><a href="login.html">Account</a></li>
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="apartments.html">
+                        Apartments
+                    </a>
+                </li>
+
+                <li>
+                    <a href="dashboard.html">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="admin.html">
+                        Admin
+                    </a>
+                </li>
+
+                <li>
+                    <a href="login.html">
+                        Account
+                    </a>
+                </li>
+
             </ul>
+
         </nav>
+
     </header>
 
+
     <!-- MAIN CONTENT -->
+    
     <main>
 
+        <!-- PAGE HEADER -->
         <section class="page-header">
-            <h2>Account Login</h2>
-            <p>Login to access your P-rent account.</p>
+
+            <h2>
+                Account Login
+            </h2>
+
+            <p>
+                Login to access your
+                P-rent account.
+            </p>
+
         </section>
 
+
+        <!-- LOGIN FORM SECTION -->
         <section class="form-section">
 
             <!-- ROLE TOGGLE -->
             <div class="role-toggle">
+
+                <!-- TENANT BUTTON -->
                 <button
+                    type="button"
                     id="tenant-toggle"
                     class="toggle-btn active"
                     onclick="switchRole('tenant')"
                 >
                     Tenant
                 </button>
+
+                <!-- LANDLORD BUTTON -->
                 <button
+                    type="button"
                     id="landlord-toggle"
                     class="toggle-btn"
                     onclick="switchRole('landlord')"
                 >
                     Landlord
                 </button>
+
             </div>
 
+
+            <!-- LOGIN FORM -->
             <form id="login-form">
 
-                <h3 id="form-title">Tenant Login</h3>
+                <h3 id="form-title">
+                    Tenant Login
+                </h3>
+
 
                 <!-- PHONE -->
                 <div class="form-group">
-                    <label for="phone">Phone Number</label>
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
                     <input
                         type="tel"
                         id="phone"
-                        placeholder="Enter phone number e.g 0712345678"
+                        placeholder="Enter phone e.g 0712345678"
                     />
-                    <small class="error" id="phone-error"></small>
+
+                    <small
+                        class="error"
+                        id="phone-error"
+                    >
+                    </small>
+
                 </div>
 
-                <!-- APARTMENT DROPDOWN (TENANT ONLY) -->
-                <div class="form-group" id="apartment-group">
-                    <label for="login-apartment">Select Your Apartment</label>
+
+                <!-- APARTMENT -->
+                <div
+                    class="form-group"
+                    id="apartment-group"
+                >
+
+                    <label for="login-apartment">
+                        Select Apartment
+                    </label>
+
                     <select id="login-apartment">
-                        <option value="">-- Select Your Apartment --</option>
+
+                        <option value="">
+                            -- Select Apartment --
+                        </option>
+
                     </select>
+
                 </div>
+
 
                 <!-- PASSWORD -->
                 <div class="form-group">
-                    <label for="password">Password</label>
+
+                    <label for="password">
+                        Password
+                    </label>
+
                     <input
                         type="password"
                         id="password"
-                        placeholder="Enter your password"
+                        placeholder="Enter password"
                     />
-                    <small class="error" id="password-error"></small>
+
+                    <small
+                        class="error"
+                        id="password-error"
+                    >
+                    </small>
+
                 </div>
 
-                <small class="error" id="login-error"></small>
 
-                <button type="submit" class="submit-btn">Login</button>
+                <!-- LOGIN ERROR -->
+                <small
+                    class="error"
+                    id="login-error"
+                >
+                </small>
 
+
+                <!-- SUBMIT BUTTON -->
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Login
+                </button>
+
+
+                <!-- REGISTER LINK -->
                 <div class="form-group">
+
                     <p class="register-link">
+
                         Don't have an account?
-                        <a href="register.html">Register here</a>
+
+                        <a href="register.html">
+                            Register here
+                        </a>
+
                     </p>
+
                 </div>
 
             </form>
@@ -103,11 +228,21 @@
 
     </main>
 
+
+    
     <!-- FOOTER -->
+    
     <footer>
-        <p>&copy; 2026 P-rent Apartment Management System</p>
+
+        <p>
+            &copy; 2026
+            P-rent Apartment Management System
+        </p>
+
     </footer>
 
+    <!-- JAVASCRIPT -->
     <script src="js/login.js"></script>
+
 </body>
 </html>

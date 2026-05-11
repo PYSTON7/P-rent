@@ -1,143 +1,217 @@
-// CURRENT ROLE
-let currentRole = "tenant";
 
-// SWITCH BETWEEN TENANT AND LANDLORD
-function switchRole(role) {
-    currentRole = role;
+// =============================
+// ELEMENTS
+// =============================
+const loginForm =
+    document.getElementById("login-form");
 
-    document.getElementById("form-title").textContent =
-        role === "tenant" ? "Tenant Login" : "Landlord Login";
+const phoneInput =
+    document.getElementById("phone");
 
-    document.getElementById("tenant-toggle")
-        .classList.toggle("active", role === "tenant");
-    document.getElementById("landlord-toggle")
-        .classList.toggle("active", role === "landlord");
+const passwordInput =
+    document.getElementById("password");
 
-    // SHOW/HIDE APARTMENT DROPDOWN
-    const apartmentGroup = document.getElementById("apartment-group");
-    apartmentGroup.style.display = role === "tenant" ? "block" : "none";
+const loginError =
+    document.getElementById("login-error");
 
-    // CLEAR ERRORS
-    document.getElementById("phone-error").textContent = "";
-    document.getElementById("password-error").textContent = "";
-    document.getElementById("login-error").textContent = "";
-}
+const phoneError =
+    document.getElementById("phone-error");
+
+const passwordError =
+    document.getElementById("password-error");
+
+const apartmentGroup =
+    document.getElementById("apartment-group");
+
+const apartmentSelect =
+    document.getElementById("login-apartment");
+
+const tenantToggle =
+    document.getElementById("tenant-toggle");
+
+const landlordToggle =
+    document.getElementById("landlord-toggle");
+
+const formTitle =
+    document.getElementById("form-title");
 
 
-// POPULATE APARTMENT DROPDOWN
-function populateApartments() {
-    const apartments = JSON.parse(localStorage.getItem("apartments")) || [];
-    const select = document.getElementById("login-apartment");
-    select.innerHTML = `<option value="">-- Select Your Apartment --</option>`;
+// =============================
+// ROLE STATE
+// =============================
+let role = "tenant";
 
-    apartments.forEach(apartment => {
-        const option = document.createElement("option");
-        option.value = apartment.name;
-        option.textContent = apartment.name;
-        select.appendChild(option);
+
+// =============================
+// SWITCH ROLE FUNCTION
+// =============================
+window.switchRole = function (selectedRole) {
+
+    role = selectedRole;
+
+    if (role === "tenant") {
+
+        tenantToggle.classList.add("active");
+        landlordToggle.classList.remove("active");
+
+        formTitle.textContent = "Tenant Login";
+
+        apartmentGroup.style.display = "block";
+
+    } else {
+
+        landlordToggle.classList.add("active");
+        tenantToggle.classList.remove("active");
+
+        formTitle.textContent = "Landlord Login";
+
+        apartmentGroup.style.display = "none";
+    }
+};
+
+
+// =============================
+// LOAD APARTMENTS (FOR TENANTS)
+// =============================
+function loadApartments() {
+
+    const apartments =
+        JSON.parse(localStorage.getItem("apartments")) || [];
+
+    apartmentSelect.innerHTML =
+        `<option value="">-- Select Apartment --</option>`;
+
+    apartments.forEach((apt) => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = apt.name;
+
+        option.textContent = apt.name;
+
+        apartmentSelect.appendChild(option);
     });
 }
 
-populateApartments();
+loadApartments();
 
 
-// LOGIN FORM
-const loginForm = document.getElementById("login-form");
+// =============================
+// LOGIN SUBMIT
+// =============================
+loginForm.addEventListener("submit", function (e) {
 
-loginForm.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") event.preventDefault();
-});
+    e.preventDefault();
 
-loginForm.addEventListener("submit", function(event) {
-    event.preventDefault();
+    // RESET ERRORS
+    loginError.textContent = "";
+    phoneError.textContent = "";
+    passwordError.textContent = "";
 
-    // CLEAR ERRORS
-    document.getElementById("phone-error").textContent = "";
-    document.getElementById("password-error").textContent = "";
-    document.getElementById("login-error").textContent = "";
 
-    const phone = document.getElementById("phone").value.trim();
-    const password = document.getElementById("password").value.trim();
+    const phone = phoneInput.value.trim();
+    const password = passwordInput.value.trim();
 
-    let isValid = true;
 
-    if (phone === "") {
-        document.getElementById("phone-error").textContent =
-            "Phone number is required";
-        isValid = false;
-    } else if (!/^0\d{9}$/.test(phone)) {
-        document.getElementById("phone-error").textContent =
-            "Enter a valid phone number e.g 0712345678";
-        isValid = false;
-    }
-
-    if (password === "") {
-        document.getElementById("password-error").textContent =
-            "Password is required";
-        isValid = false;
-    }
-
-    // TENANT MUST SELECT APARTMENT
-    let selectedApartment = "";
-    if (currentRole === "tenant") {
-        selectedApartment = document.getElementById("login-apartment").value;
-        if (selectedApartment === "") {
-            document.getElementById("login-error").textContent =
-                "Please select your apartment";
-            isValid = false;
-        }
-    }
-
-    if (!isValid) return;
-
-    // GET USERS
-    const users = JSON.parse(localStorage.getItem("users")) || {
-        tenants: [],
-        landlords: []
-    };
-
-    const userList = currentRole === "tenant"
-        ? users.tenants
-        : users.landlords;
-
-    let matchedUser;
-
-    if (currentRole === "tenant") {
-        // MATCH PHONE + PASSWORD + APARTMENT
-        matchedUser = userList.find(user =>
-            user.phone === phone &&
-            user.password === password &&
-            user.apartment === selectedApartment
-        );
-    } else {
-        // LANDLORD - MATCH PHONE + PASSWORD ONLY
-        matchedUser = userList.find(user =>
-            user.phone === phone &&
-            user.password === password
-        );
-    }
-
-    if (!matchedUser) {
-        document.getElementById("login-error").textContent =
-            currentRole === "tenant"
-                ? "Incorrect phone, password, or apartment"
-                : "Incorrect phone number or password";
+    // VALIDATION
+    if (!phone) {
+        phoneError.textContent = "Phone required";
         return;
     }
 
-    // SAVE SESSION
-    localStorage.setItem("loggedInUser", JSON.stringify({
-        name: matchedUser.name,
-        phone: matchedUser.phone,
-        role: currentRole,
-        apartment: matchedUser.apartment || null,
-        room: matchedUser.room || null
-    }));
+    if (!password) {
+        passwordError.textContent = "Password required";
+        return;
+    }
 
-    // REDIRECT
-    if (currentRole === "tenant") {
+
+    // =============================
+    // TENANT LOGIN
+    // =============================
+    if (role === "tenant") {
+
+        const apartment =
+            apartmentSelect.value;
+
+
+        if (!apartment) {
+
+            loginError.textContent =
+                "Select apartment";
+
+            return;
+        }
+
+
+        const tenants =
+            JSON.parse(localStorage.getItem("tenants")) || [];
+
+
+        const tenant =
+            tenants.find(t =>
+                t.phone === phone &&
+                t.password === password &&
+                t.apartment === apartment
+            );
+
+
+        if (!tenant) {
+
+            loginError.textContent =
+                "Invalid tenant credentials";
+
+            return;
+        }
+
+
+        // SAVE SESSION
+        localStorage.setItem(
+            "loggedInTenant",
+            JSON.stringify(tenant)
+        );
+
+
+        alert("Login successful");
+
         window.location.href = "dashboard.html";
-    } else {
+
+    }
+
+
+    // =============================
+    // LANDLORD LOGIN
+    // =============================
+    else {
+
+        const landlords =
+            JSON.parse(localStorage.getItem("landlords")) || [];
+
+
+        const landlord =
+            landlords.find(l =>
+                l.phone === phone &&
+                l.password === password
+            );
+
+
+        if (!landlord) {
+
+            loginError.textContent =
+                "Invalid landlord credentials";
+
+            return;
+        }
+
+
+        localStorage.setItem(
+            "loggedInLandlord",
+            JSON.stringify(landlord)
+        );
+
+
+        alert("Landlord login successful");
+
         window.location.href = "admin.html";
     }
 });

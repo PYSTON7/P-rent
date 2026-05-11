@@ -1,85 +1,78 @@
-const express = require("express");
-const axios = require("axios");
-require("dotenv").config();
+// =============================
+// M-PESA PAYMENT (FIXED VERSION)
+// =============================
+mpesaBtn.addEventListener("click", async () => {
 
-const app = express();
-app.use(express.json());
+    mpesaError.textContent = "";
 
-// GET ACCESS TOKEN
-async function getAccessToken() {
+    const phone = mpesaPhone.value.trim();
+    const amount = Number(paymentAmount.value);
 
-    const url =
-        "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
+    // VALIDATION
+    if (!phone) {
+        mpesaError.textContent = "Enter M-Pesa phone number";
+        return;
+    }
 
-    const auth =
-        Buffer.from(
-            `${process.env.CONSUMER_KEY}:${process.env.CONSUMER_SECRET}`
-        ).toString("base64");
+    if (!/^2547\d{8}$/.test(phone)) {
+        mpesaError.textContent = "Use format 2547XXXXXXXX";
+        return;
+    }
 
-    const response =
-        await axios.get(url, {
-            headers: {
-                Authorization: `Basic ${auth}`
-            }
-        });
+    if (isNaN(amount) || amount <= 0) {
+        mpesaError.textContent = "Enter valid rent amount first";
+        return;
+    }
 
-    return response.data.access_token;
-}
-
-
-// STK PUSH ROUTE
-app.post("/stkpush", async (req, res) => {
-
-    const { phone, amount } = req.body;
-
-    const token = await getAccessToken();
-
-    const timestamp = new Date()
-        .toISOString()
-        .replace(/[-T:\.Z]/g, "")
-        .slice(0, 14);
-
-    const password = Buffer.from(
-        process.env.SHORTCODE + process.env.PASSKEY + timestamp
-    ).toString("base64");
-
-
-    const data = {
-        BusinessShortCode: process.env.SHORTCODE,
-        Password: password,
-        Timestamp: timestamp,
-        TransactionType: "CustomerPayBillOnline",
-        Amount: amount,
-        PartyA: phone,
-        PartyB: process.env.SHORTCODE,
-        PhoneNumber: phone,
-        CallBackURL: process.env.CALLBACK_URL,
-        AccountReference: "P-rent",
-        TransactionDesc: "Rent Payment"
-    };
-
+    // LOADING STATE
+    mpesaBtn.disabled = true;
+    mpesaBtn.textContent = "Processing...";
 
     try {
-        const response =
-            await axios.post(
-                "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest",
-                data,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            );
 
-        res.json(response.data);
+        const response = await fetch("http://localhost:3000/stkpush", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                phone: phone,
+                amount: amount,
+                tenantId: currentTenant.phone
+            })
+        });
+
+        const data = await response.json();
+
+        console.log("M-Pesa Response:", data);
+
+        // SUCCESS MESSAGE
+        alert("STK Push sent! Check your phone and enter PIN.");
+
+        // OPTIONAL: Save pending transaction locally
+        currentTenant.payments.push({
+            date: new Date().toLocaleString(),
+            type: "M-Pesa STK Push",
+            amount: amount,
+            status: "Pending"
+        });
+
+        saveTenant();
+        displayPayments();
 
     } catch (error) {
 
-        res.status(500).json(error.response.data);
+        console.error(error);
+
+        mpesaError.textContent =
+            "Payment request failed. Try again.";
+
+    } finally {
+
+        mpesaBtn.disabled = false;
+        mpesaBtn.textContent = "Pay via M-Pesa";
     }
-});
-
-
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
 });

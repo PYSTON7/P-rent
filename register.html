@@ -1,43 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
     <title>Register | P-rent</title>
-    <link rel="stylesheet" href="css/style.css" />
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    />
+
 </head>
+
 <body>
 
+   
     <!-- HEADER -->
+   
     <header>
+
         <nav class="navbar">
+
             <div class="logo">
                 <h1>P-rent</h1>
             </div>
+
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="apartments.html">Apartments</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="login.html">Account</a></li>
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="apartments.html">
+                        Apartments
+                    </a>
+                </li>
+
+                <li>
+                    <a href="dashboard.html">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="admin.html">
+                        Admin
+                    </a>
+                </li>
+
+                <li>
+                    <a href="login.html">
+                        Account
+                    </a>
+                </li>
+
             </ul>
+
         </nav>
+
     </header>
 
+
+    
     <!-- MAIN CONTENT -->
+   
     <main>
 
         <!-- PAGE HEADER -->
         <section class="page-header">
-            <h2>Create Account</h2>
-            <p>Register as a tenant or landlord to get started.</p>
+
+            <h2>
+                Create Account
+            </h2>
+
+            <p>
+                Register as a tenant or landlord
+                to get started.
+            </p>
+
         </section>
 
-        <!-- FORM SECTION -->
+
+        <!-- REGISTER FORM SECTION -->
         <section class="form-section">
 
             <!-- ROLE TOGGLE -->
             <div class="role-toggle">
+
+                <!-- TENANT -->
                 <button
+                    type="button"
                     id="tenant-toggle"
                     class="toggle-btn active"
                     onclick="switchRole('tenant')"
@@ -45,100 +106,195 @@
                     Tenant
                 </button>
 
+                <!-- LANDLORD -->
                 <button
+                    type="button"
                     id="landlord-toggle"
                     class="toggle-btn"
                     onclick="switchRole('landlord')"
                 >
                     Landlord
                 </button>
+
             </div>
+
 
             <!-- REGISTER FORM -->
             <form id="register-form">
 
-                <h3 id="form-title">Tenant Registration</h3>
+                <h3 id="form-title">
+                    Tenant Registration
+                </h3>
+
 
                 <!-- FULL NAME -->
                 <div class="form-group">
-                    <label for="full-name">Full Name</label>
+
+                    <label for="full-name">
+                        Full Name
+                    </label>
+
                     <input
                         type="text"
                         id="full-name"
                         placeholder="Enter your full name"
                     />
-                    <small class="error" id="name-error"></small>
+
+                    <small
+                        class="error"
+                        id="name-error"
+                    >
+                    </small>
+
                 </div>
 
-                <!-- PHONE NUMBER -->
+
+                <!-- PHONE -->
                 <div class="form-group">
-                    <label for="phone">Phone Number</label>
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
                     <input
                         type="tel"
                         id="phone"
-                        placeholder="Enter phone number e.g 0712345678"
+                        placeholder="Enter phone e.g 0712345678"
                     />
-                    <small class="error" id="phone-error"></small>
+
+                    <small
+                        class="error"
+                        id="phone-error"
+                    >
+                    </small>
+
                 </div>
 
-                <!-- APARTMENT (TENANT ONLY) -->
-                <div class="form-group" id="apartment-group">
-                    <label for="apartment">Apartment Name</label>
+
+                <!-- APARTMENT -->
+                <div
+                    class="form-group"
+                    id="apartment-group"
+                >
+
+                    <label for="apartment">
+                        Apartment Name
+                    </label>
+
                     <input
                         type="text"
                         id="apartment"
-                        placeholder="Enter your apartment name"
+                        placeholder="Enter apartment name"
                     />
-                    <small class="error" id="apartment-error"></small>
+
+                    <small
+                        class="error"
+                        id="apartment-error"
+                    >
+                    </small>
+
                 </div>
 
-                <!-- ROOM NUMBER (TENANT ONLY) -->
-                <div class="form-group" id="room-group">
-                    <label for="room">Room Number</label>
+
+                <!-- ROOM -->
+                <div
+                    class="form-group"
+                    id="room-group"
+                >
+
+                    <label for="room">
+                        Room Number
+                    </label>
+
                     <input
                         type="text"
                         id="room"
-                        placeholder="Enter your room number"
+                        placeholder="Enter room number"
                     />
-                    <small class="error" id="room-error"></small>
+
+                    <small
+                        class="error"
+                        id="room-error"
+                    >
+                    </small>
+
                 </div>
+
 
                 <!-- PASSWORD -->
                 <div class="form-group">
-                    <label for="password">Password</label>
+
+                    <label for="password">
+                        Password
+                    </label>
+
                     <input
                         type="password"
                         id="password"
-                        placeholder="Create a password"
+                        placeholder="Create password"
                     />
-                    <small class="error" id="password-error"></small>
+
+                    <small
+                        class="error"
+                        id="password-error"
+                    >
+                    </small>
+
                 </div>
+
 
                 <!-- CONFIRM PASSWORD -->
                 <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
+
+                    <label for="confirm-password">
+                        Confirm Password
+                    </label>
+
                     <input
                         type="password"
                         id="confirm-password"
-                        placeholder="Confirm your password"
+                        placeholder="Confirm password"
                     />
-                    <small class="error" id="confirm-error"></small>
+
+                    <small
+                        class="error"
+                        id="confirm-error"
+                    >
+                    </small>
+
                 </div>
 
+
                 <!-- GENERAL ERROR -->
-                <small class="error" id="register-error"></small>
+                <small
+                    class="error"
+                    id="register-error"
+                >
+                </small>
+
 
                 <!-- SUBMIT -->
-                <button type="submit" class="submit-btn">
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
                     Create Account
                 </button>
 
+
                 <!-- LOGIN LINK -->
                 <div class="form-group">
+
                     <p class="register-link">
+
                         Already have an account?
-                        <a href="login.html">Login here</a>
+
+                        <a href="login.html">
+                            Login here
+                        </a>
+
                     </p>
+
                 </div>
 
             </form>
@@ -147,11 +303,23 @@
 
     </main>
 
+
+  
     <!-- FOOTER -->
+  
     <footer>
-        <p>&copy; 2026 P-rent Apartment Management System</p>
+
+        <p>
+            &copy; 2026
+            P-rent Apartment Management System
+        </p>
+
     </footer>
 
+
+    <!-- JAVASCRIPT -->
+   
     <script src="js/register.js"></script>
+
 </body>
 </html>

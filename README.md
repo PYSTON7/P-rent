@@ -38,4 +38,4 @@ Deployment: Static hosting (GitHub Pages)
 # Installation
 1. Clone the repo: git clone https://github.com/PYSTON7/p-rent.git
 2. Project folder: cd P-rent
-3. View from browser
+3. View from browser: https://pyston7.github.io/P-rent/

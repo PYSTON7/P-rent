@@ -11,7 +11,7 @@ Enabling tenants to view balances and make payments
 Supporting M-Pesa payments (simulated or integrated)
 Storing all data in the browser (localStorage) for simplicity (upgradeable to a backend)
 
-# Purpose:
+# Purpose
 Reduce the administrative burden on landlords
 Provide tenants with a digital platform for rent management
 Demonstrate a full-stack workflow with user roles, dashboards, and payment tracking
@@ -37,3 +37,5 @@ Deployment: Static hosting (GitHub Pages)
 
 # Installation
 1. Clone the repo: git clone https://github.com/PYSTON7/p-rent.git
+2. Project folder: cd P-rent
+3. View from browser

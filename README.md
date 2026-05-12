@@ -10,3 +10,8 @@ Allowing landlords to manage apartments and tenants easily
 Enabling tenants to view balances and make payments
 Supporting M-Pesa payments (simulated or integrated)
 Storing all data in the browser (localStorage) for simplicity (upgradeable to a backend)
+
+# Purpose:
+Reduce the administrative burden on landlords
+Provide tenants with a digital platform for rent management
+Demonstrate a full-stack workflow with user roles, dashboards, and payment tracking

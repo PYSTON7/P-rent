@@ -62,6 +62,12 @@ Track payment history
 Add tenants to apartments
 Track balance and payments
 
+## Known Issues
+No server-side authentication (data is stored in localStorage)
+M-Pesa integration is simulated unless backend API is connected
+No multi-tenancy for landlords managing multiple apartments efficiently
+Passwords are stored in plain text (for demonstration purposes)
+
 # License
 MIT License – see LICENSE for details.
 

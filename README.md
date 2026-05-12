@@ -58,3 +58,4 @@ Make payments (local or M-Pesa)
 Track payment history
 # Landlord Dashboard
 Add tenants to apartments
+Track balance and payments

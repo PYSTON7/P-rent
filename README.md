@@ -28,3 +28,12 @@ Register and login
 Add apartments and tenants
 Track rent payments and balances
 View all tenant payment histories
+
+# Technologies
+Frontend: HTML, CSS, JavaScript
+Storage: Browser localStorage
+Payment: M-Pesa (API integration)
+Deployment: Static hosting (GitHub Pages)
+
+# Installation
+1. Clone the repo: git clone https://github.com/PYSTON7/p-rent.git

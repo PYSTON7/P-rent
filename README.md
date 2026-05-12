@@ -39,3 +39,22 @@ Deployment: Static hosting (GitHub Pages)
 1. Clone the repo: git clone https://github.com/PYSTON7/p-rent.git
 2. Project folder: cd P-rent
 3. View from browser: https://pyston7.github.io/P-rent/
+
+## Usage
+# Registration
+Navigate to register.html
+Select Tenant or Landlord
+Fill in the required fields
+Click Create Account
+# Login
+Navigate to login.html
+Select role (Tenant/Landlord)
+Enter phone and password
+Tenant dashboard: dashboard.html
+Landlord dashboard: admin.html
+# Tenant Dashboard
+View rent and water balances
+Make payments (local or M-Pesa)
+Track payment history
+# Landlord Dashboard
+Add tenants to apartments

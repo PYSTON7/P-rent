@@ -68,6 +68,13 @@ M-Pesa integration is simulated unless backend API is connected
 No multi-tenancy for landlords managing multiple apartments efficiently
 Passwords are stored in plain text (for demonstration purposes)
 
+## Future Improvements include
+Implement backend with Node.js + Express + MongoDB
+Password hashing for security
+Real-time M-Pesa payment integration
+Notifications for due payments
+Responsive and mobile-first design
+
 # License
 MIT License – see LICENSE for details.
 

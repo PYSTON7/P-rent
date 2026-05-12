@@ -76,7 +76,7 @@ Notifications for due payments
 Responsive and mobile-first design
 
 # License
-MIT License – see LICENSE for details.
+MIT License 
 
 # Copyright
 © 2026 P-rent Apartment Management System. All rights reserved.

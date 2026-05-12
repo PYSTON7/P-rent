@@ -59,3 +59,6 @@ Track payment history
 # Landlord Dashboard
 Add tenants to apartments
 Track balance and payments
+
+# License
+MIT License – see LICENSE for details.

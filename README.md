@@ -62,3 +62,6 @@ Track balance and payments
 
 # License
 MIT License – see LICENSE for details.
+
+# Copyright
+© 2026 P-rent Apartment Management System. All rights reserved.

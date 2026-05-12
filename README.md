@@ -1,4 +1,4 @@
 # P-rent
 
 # Project Description
-A web-based apartment management system that enables landlords to manage tenants, payments, rooms, and apartment operations while allowing tenants to pay rent, check balances, and track payment history online.
+P-rent is a web-based apartment management system designed to solve the common problems of manual tenant tracking, rent collection, and apartment management. Many landlords struggle with keeping records of tenants, tracking rent payments, and handling overdue balances. Likewise, tenants often have no convenient way to view their balance or pay rent electronically.

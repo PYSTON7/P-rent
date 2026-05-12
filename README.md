@@ -15,3 +15,16 @@ Storing all data in the browser (localStorage) for simplicity (upgradeable to a 
 Reduce the administrative burden on landlords
 Provide tenants with a digital platform for rent management
 Demonstrate a full-stack workflow with user roles, dashboards, and payment tracking
+
+## Features
+# Tenant
+Register and login
+View rent and utility balances
+Make payments locally or via M-Pesa
+Track payment history
+Logout securely
+# Landlord
+Register and login
+Add apartments and tenants
+Track rent payments and balances
+View all tenant payment histories
